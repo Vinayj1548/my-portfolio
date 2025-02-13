@@ -6,27 +6,32 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
-    // Check for saved theme preference or use system preference
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme as "light" | "dark");
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      setTheme("dark");
+      document.documentElement.classList.add("dark");
     } else {
-      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(isDark ? "dark" : "light");
-      document.documentElement.classList.toggle("dark", isDark);
+      setTheme("light");
+      document.documentElement.classList.remove("dark");
     }
   }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
-    document.documentElement.classList.toggle("dark");
     localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark");
   };
 
   return (
-    <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
+    <Button 
+      variant="ghost" 
+      size="icon" 
+      onClick={toggleTheme}
+      aria-label="Toggle theme"
+    >
       {theme === "light" ? (
         <Moon className="h-5 w-5" />
       ) : (
