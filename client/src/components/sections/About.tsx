@@ -13,6 +13,7 @@ export default function About() {
         <Card>
           <CardContent className="p-6">
             <div className="grid md:grid-cols-2 gap-8 items-center">
+              {/* Image Section */}
               <div>
                 <img 
                   src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40"
@@ -20,15 +21,41 @@ export default function About() {
                   className="rounded-lg"
                 />
               </div>
+
+              {/* About Me Text & Code Section */}
               <div className="space-y-4">
                 <p className="text-lg text-muted-foreground">
-                  I'm a passionate developer with experience in building modern web applications.
-                  My journey in tech started [X] years ago, and I've been creating innovative solutions ever since.
+                  I specialize in front-end development, with expertise in React, Node.js, 
+                  and modern web technologies. My programming skills are improving day by day, 
+                  and I'm always eager to learn new things and take on challenging projects.
                 </p>
-                <p className="text-lg text-muted-foreground">
-                  I specialize in full-stack development, with expertise in React, Node.js, and modern web technologies.
-                  I'm always eager to learn new things and take on challenging projects.
-                </p>
+
+                {/* Code Block for User Profile */}
+                <div className="bg-gray-900 text-green-400 p-4 rounded-lg shadow-lg overflow-x-auto">
+                  <h2 className="text-xl font-bold text-white">🚀 User Profile: The Code Alchemist 🔥</h2>
+                  <pre className="whitespace-pre-wrap">
+                    <code>
+{`const user = {
+  name: "Aspiring Full-Stack Developer",
+  skills: [
+    "HTML", "CSS", "JavaScript",
+    "React.js", "Next.js (a bit)",
+    "C", "C++", "Python", "Java",
+    "Data Structures & Algorithms (DSA)"
+  ],
+  experience: {
+    role: "Junior Web Developer",
+    projects: ["Dynamic Web Applications", "Frontend UI/UX Enhancements", "Optimized Code Performance"],
+    tools: ["Vite", "Tailwind CSS", "REST APIs", "Git"]
+  },
+  mission: "To craft seamless user experiences with scalable and efficient code.",
+  futureGoals: ["Master Full-Stack Development", "Contribute to Open Source", "Crack Industry-Level Interviews"]
+};
+
+console.log("🚀 Ready to build and break things to innovate! 🔥");`}
+                    </code>
+                  </pre>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -37,3 +64,5 @@ export default function About() {
     </section>
   );
 }
+
+

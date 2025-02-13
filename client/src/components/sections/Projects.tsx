@@ -2,21 +2,25 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { GithubIcon, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import netImg from '../../assets/screenshot.png';
+import bookImg from '../../assets/screenshot2.png'
+
+
 
 const projects = [
   {
-    title: "Project 1",
-    description: "A modern web application built with React and Node.js",
-    image: "https://images.unsplash.com/photo-1487412840181-f63f62e6a0ee",
-    github: "#",
-    demo: "#",
+    title: "Netflix-Clone",
+    description: "A modern web Page built with HTML and CSS",
+    image: netImg,
+    github: "https://github.com/Vinayj1548/Netflix-Clone",
+    demo: "https://vinayj1548.github.io/Netflix-Clone/",
   },
   {
-    title: "Project 2",
-    description: "Full-stack application with real-time features",
-    image: "https://images.unsplash.com/photo-1523467327888-a8a445992901",
-    github: "#",
-    demo: "#",
+    title: "NewsApp",
+    description: "Full-stack application with real-time features *(API only works in development server)",
+    image: bookImg,
+    github: "https://github.com/Vinayj1548/NewsMonkey-React",
+    demo: "https://vinayj1548.github.io/NewsMonkey-React/",
   },
 ];
 

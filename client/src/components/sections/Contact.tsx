@@ -5,11 +5,13 @@ import { Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Contact() {
-  const email = "your.email@example.com"; // Replace with your email
-  const phone = "+1234567890"; // Replace with your phone number
-  const linkedin = "https://linkedin.com/in/yourprofile"; // Replace with your LinkedIn profile
-  const github = "https://github.com/yourusername"; // Replace with your GitHub profile
-  const whatsapp = `https://wa.me/${phone.replace('+', '')}`; // Replace with your WhatsApp number
+  const email = "work.vinayjangid@gmail.com"; // Replace with your email
+  const phone1 = "+919036135392"; // Replace with your phone number
+  const phone2 = "+918949381125"; // Replace with your phone number
+  const linkedin = "https://www.linkedin.com/in/vinay-jangid-742470240/"; // Replace with your LinkedIn profile
+  const github = "https://github.com/Vinayj1548"; // Replace with your GitHub profile
+  const whatsapp1 = `https://wa.me/${phone1.replace('+', '')}`; // Replace with your WhatsApp number
+  const whatsapp2 = `https://wa.me/${phone2.replace('+', '')}`; // Replace with your WhatsApp number
 
   const handleEmailClick = () => {
     const subject = "Contact from Portfolio";
@@ -45,9 +47,19 @@ export default function Contact() {
                   variant="outline"
                   asChild
                 >
-                  <a href={`tel:${phone}`}>
+                  <a href={`tel:${phone1}`}>
                     <Phone className="h-5 w-5" />
-                    {phone}
+                    {phone1}
+                  </a>
+                </Button>
+                <Button
+                  className="w-full flex items-center gap-2 justify-start"
+                  variant="outline"
+                  asChild
+                >
+                  <a href={`tel:${phone2}`}>
+                    <Phone className="h-5 w-5" />
+                    {phone2}
                   </a>
                 </Button>
               </div>
@@ -84,13 +96,24 @@ export default function Contact() {
                 </Button>
                 <Button variant="outline" asChild className="w-full">
                   <a
-                    href={whatsapp}
+                    href={whatsapp1}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
                   >
                     <SiWhatsapp className="w-5 h-5" />
-                    WhatsApp
+                    WhatsApp1
+                  </a>
+                </Button>
+                <Button variant="outline" asChild className="w-full">
+                  <a
+                    href={whatsapp2}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <SiWhatsapp className="w-5 h-5" />
+                    WhatsApp2
                   </a>
                 </Button>
               </div>
