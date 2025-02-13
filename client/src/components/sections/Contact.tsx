@@ -1,45 +1,21 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { insertContactSchema, type InsertContact } from "@shared/schema";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
-import { motion } from "framer-motion";
 import { SiLinkedin, SiGithub, SiWhatsapp } from "react-icons/si";
+import { Mail, Phone } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Contact() {
-  const { toast } = useToast();
-  const form = useForm<InsertContact>({
-    resolver: zodResolver(insertContactSchema),
-  });
+  const email = "your.email@example.com"; // Replace with your email
+  const phone = "+1234567890"; // Replace with your phone number
+  const linkedin = "https://linkedin.com/in/yourprofile"; // Replace with your LinkedIn profile
+  const github = "https://github.com/yourusername"; // Replace with your GitHub profile
+  const whatsapp = `https://wa.me/${phone.replace('+', '')}`; // Replace with your WhatsApp number
 
-  const mutation = useMutation({
-    mutationFn: async (data: InsertContact) => {
-      await apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Success",
-        description: "Your message has been sent!",
-      });
-      form.reset();
-    },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
-  });
-
-  const onSubmit = form.handleSubmit((data) => {
-    mutation.mutate(data);
-  });
+  const handleEmailClick = () => {
+    const subject = "Contact from Portfolio";
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+    window.location.href = mailtoLink;
+  };
 
   return (
     <section id="contact" className="py-20">
@@ -52,40 +28,29 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle>Contact Form</CardTitle>
+              <CardTitle>Contact Me</CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={onSubmit} className="space-y-4">
-                <div>
-                  <Input
-                    placeholder="Name"
-                    {...form.register("name")}
-                    error={form.formState.errors.name?.message}
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="email"
-                    placeholder="Email"
-                    {...form.register("email")}
-                    error={form.formState.errors.email?.message}
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    placeholder="Message"
-                    {...form.register("message")}
-                    error={form.formState.errors.message?.message}
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={mutation.isPending}
+              <div className="space-y-4">
+                <Button 
+                  onClick={handleEmailClick}
+                  className="w-full flex items-center gap-2 justify-start"
+                  variant="outline"
                 >
-                  {mutation.isPending ? "Sending..." : "Send Message"}
+                  <Mail className="h-5 w-5" />
+                  {email}
                 </Button>
-              </form>
+                <Button
+                  className="w-full flex items-center gap-2 justify-start"
+                  variant="outline"
+                  asChild
+                >
+                  <a href={`tel:${phone}`}>
+                    <Phone className="h-5 w-5" />
+                    {phone}
+                  </a>
+                </Button>
+              </div>
             </CardContent>
           </Card>
 
@@ -95,27 +60,39 @@ export default function Contact() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <a
-                  href="#linkedin"
-                  className="flex items-center gap-2 text-lg hover:text-primary"
-                >
-                  <SiLinkedin className="w-6 h-6" />
-                  LinkedIn
-                </a>
-                <a
-                  href="#github"
-                  className="flex items-center gap-2 text-lg hover:text-primary"
-                >
-                  <SiGithub className="w-6 h-6" />
-                  GitHub
-                </a>
-                <a
-                  href="#whatsapp"
-                  className="flex items-center gap-2 text-lg hover:text-primary"
-                >
-                  <SiWhatsapp className="w-6 h-6" />
-                  WhatsApp
-                </a>
+                <Button variant="outline" asChild className="w-full">
+                  <a
+                    href={linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <SiLinkedin className="w-5 h-5" />
+                    LinkedIn
+                  </a>
+                </Button>
+                <Button variant="outline" asChild className="w-full">
+                  <a
+                    href={github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <SiGithub className="w-5 h-5" />
+                    GitHub
+                  </a>
+                </Button>
+                <Button variant="outline" asChild className="w-full">
+                  <a
+                    href={whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <SiWhatsapp className="w-5 h-5" />
+                    WhatsApp
+                  </a>
+                </Button>
               </div>
             </CardContent>
           </Card>
